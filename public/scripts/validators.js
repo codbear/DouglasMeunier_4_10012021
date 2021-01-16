@@ -3,34 +3,22 @@ const REGEX = {
   BIRTHDATE : /^(19|20)\d{2}[-](0?[1-9]|1[012])[-](0[1-9]|[12]\d|3[01])$/,
 }
 
-function isLongEnough(stringToCheck, minLength) {
-  return stringToCheck.length >= minLength;
+function isLongEnough(field) {
+  return field.value.length >= 2;
 }
 
-function isFirstValid(first) {
-  return isLongEnough(first, 2);
+function isEmail(field) {
+  return REGEX.MAIL.test(field.value);
 }
 
-function isLastValid(last) {
-  return isLongEnough(last, 2);
+function isBirthdate(field) {
+  return REGEX.BIRTHDATE.test(field.value);
 }
 
-function isEmailValid(email) {
-  return REGEX.MAIL.test(email);
+function isQuantityValid(field) {
+  return field.value >= 0 && field.value <= 99;
 }
 
-function isBirthdateValid(birthdate) {
-  return REGEX.BIRTHDATE.test(birthdate);
-}
-
-function isQuantityValid(quantity) {
-  return quantity >= 0 && quantity <= 99;
-}
-
-function isLocationValid(locations) {
-  return [...locations].some(location => location.checked);
-}
-
-function isTCUValid(tcuCheckboxElement) {
-  return tcuCheckboxElement.checked;
+function isOneChecked(elements) {
+  return elements.some(element => element.checked);
 }

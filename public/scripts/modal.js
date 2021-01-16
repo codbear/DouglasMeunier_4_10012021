@@ -13,18 +13,27 @@ const modalBtn = document.querySelectorAll('.modal-btn');
 const modalClose = modalbg.querySelector('.close')
 const formData = document.querySelectorAll('.formData');
 const $form = document.getElementById('signUpForm');
-const $formFirst = document.getElementById('first');
-const $formLast = document.getElementById('last');
-const $formEmail = document.getElementById('email');
-const $formBirthdate = document.getElementById('birthdate');
-const $formQuantity = document.getElementById('quantity');
-const $formLocations = document.querySelectorAll('input[type=radio]');
-const $formTCU = document.getElementById('checkbox1');
+const $first = document.getElementById('first');
+const $last = document.getElementById('last');
+const $email = document.getElementById('email');
+const $birthdate = document.getElementById('birthdate');
+const $quantity = document.getElementById('quantity');
+const $locations = document.querySelectorAll('input[type=radio]');
+const $tcu = document.getElementById('checkbox1');
+
+const formFields = {
+  firstName: new Field($first, isLongEnough),
+  lastName: new Field($last, isLongEnough),
+  email: new Field($email, isEmail),
+  birthdate: new Field($birthdate, isBirthdate),
+  quantity: new Field($quantity, isQuantityValid),
+  locations: new Field($locations, isOneChecked),
+  tcu: new Field($tcu, isOneChecked),
+}
 
 // Events handlers
 modalBtn.forEach((btn) => btn.addEventListener('click', openModal));
 modalClose.addEventListener('click', closeModal);
-$form.addEventListener('submit', validate);
 
 // Modal actions
 function openModal() {
@@ -33,21 +42,5 @@ function openModal() {
 
 function closeModal() {
   modalbg.style.display = 'none';
-}
-
-function validate(event) {
-  event.preventDefault();
-
-  const isValid = isFirstValid($formFirst.value)
-    & isLastValid($formLast.value)
-    & isEmailValid($formEmail.value)
-    & isBirthdateValid($formBirthdate.value)
-    & isQuantityValid($formQuantity.value)
-    & isLocationValid($formLocations)
-    & isTCUValid($formTCU);
-
-  if (isValid) {
-    closeModal();
-  }
 }
 
