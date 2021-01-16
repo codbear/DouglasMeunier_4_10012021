@@ -21,19 +21,20 @@ const $quantity = document.getElementById('quantity');
 const $locations = document.querySelectorAll('input[type=radio]');
 const $tcu = document.getElementById('checkbox1');
 
-const formFields = {
-  firstName: new Field($first, isLongEnough),
-  lastName: new Field($last, isLongEnough),
-  email: new Field($email, isEmail),
-  birthdate: new Field($birthdate, isBirthdate),
-  quantity: new Field($quantity, isQuantityValid),
-  locations: new Field($locations, isOneChecked),
-  tcu: new Field($tcu, isOneChecked),
-}
+const form = new Form({
+  firstName: new Field([$first], isLongEnough),
+  lastName: new Field([$last], isLongEnough),
+  email: new Field([$email], isEmail),
+  birthdate: new Field([$birthdate], isBirthdate),
+  quantity: new Field([$quantity], isQuantityValid),
+  locations: new Field([...$locations], isOneChecked),
+  tcu: new Field([$tcu], isChecked),
+});
 
 // Events handlers
 modalBtn.forEach((btn) => btn.addEventListener('click', openModal));
 modalClose.addEventListener('click', closeModal);
+$form.addEventListener('submit', validate);
 
 // Modal actions
 function openModal() {
@@ -42,5 +43,13 @@ function openModal() {
 
 function closeModal() {
   modalbg.style.display = 'none';
+}
+
+function validate(event) {
+  event.preventDefault();
+  const isValid = form.validate();
+  if (isValid) {
+    closeModal();
+  }
 }
 

@@ -1,11 +1,11 @@
 class Field {
   constructor(nodes, validator) {
-    this.nodes = [...nodes];
+    this.nodes = nodes;
     this.validator = validator;
     this.formData = this.nodes[0].parentElement;
   }
 
-  validateField() {
+  validateField(callback = () => {}) {
     let isValid
 
     if (this.nodes.length > 1) {
@@ -16,15 +16,10 @@ class Field {
 
     this.toggleErrorVisible(isValid);
 
-    return this;
-  }
-
-  setFieldError(errorMessage) {
-    this.formData.dataset.error = errorMessage;
-    this.toggleErrorVisible(false);
+    callback(isValid);
   }
 
   toggleErrorVisible(isValid) {
-    this.formData.dataset.errorVisible = isValid;
+    this.formData.dataset.errorVisible = isValid ? 'false': 'true';
   }
 }

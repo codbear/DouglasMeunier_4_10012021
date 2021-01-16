@@ -16,7 +16,11 @@ function isBirthdate(field) {
 }
 
 function isQuantityValid(field) {
-  return field.value >= 0 && field.value <= 99;
+  return field.value >= '0' && field.value <= '99';
+}
+
+function isChecked(element) {
+  return element.checked;
 }
 
 function isOneChecked(elements) {
