@@ -4,6 +4,8 @@ class Modal {
     this.modal = modalElement;
     this.closeButton = this.modal.querySelector('.close');
     this.content = this.modal.querySelector('.content');
+    this.open = this.open.bind(this);
+    this.close = this.close.bind(this);
 
     this.closeButton.addEventListener('click', this.close);
   }
