@@ -1,17 +1,5 @@
-function editNav() {
-  var x = document.getElementById('myTopnav');
-  if (x.className === 'topnav') {
-    x.className += ' responsive';
-  } else {
-    x.className = 'topnav';
-  }
-}
-
-// DOM Elements
-const modalbg = document.querySelector('.bground');
-const modalBtn = document.querySelectorAll('.modal-btn');
-const modalClose = modalbg.querySelector('.close')
-const formData = document.querySelectorAll('.formData');
+const $modal = document.querySelector('.bground');
+const $modalTriggers = document.querySelectorAll('.modal-btn');
 const $form = document.getElementById('signUpForm');
 const $first = document.getElementById('first');
 const $last = document.getElementById('last');
@@ -20,6 +8,8 @@ const $birthdate = document.getElementById('birthdate');
 const $quantity = document.getElementById('quantity');
 const $locations = document.querySelectorAll('input[type=radio]');
 const $tcu = document.getElementById('checkbox1');
+
+const modal = new Modal($modal);
 
 const form = new Form({
   firstName: new Field([$first], isLongEnough),
@@ -31,25 +21,15 @@ const form = new Form({
   tcu: new Field([$tcu], isChecked),
 });
 
-// Events handlers
-modalBtn.forEach((btn) => btn.addEventListener('click', openModal));
-modalClose.addEventListener('click', closeModal);
+$modalTriggers.forEach((btn) => btn.addEventListener('click', modal.open));
 $form.addEventListener('submit', validate);
 
-// Modal actions
-function openModal() {
-  modalbg.style.display = 'block';
-}
-
-function closeModal() {
-  modalbg.style.display = 'none';
-}
 
 function validate(event) {
   event.preventDefault();
-  const isValid = form.validate();
-  if (isValid) {
-    closeModal();
+
+  if (form.validate()) {
+    modal.success();
   }
 }
 
