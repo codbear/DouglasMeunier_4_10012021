@@ -183,6 +183,7 @@ main {
 .content {
     margin: 5% auto;
     width: 100%;
+    height: 1015px;
     max-width: 500px;
     animation-name: modalopen;
     animation-duration: var(--modal-duration);
@@ -194,7 +195,26 @@ main {
     padding-top: 10px;
 }
 
+.modal-success {
+    display: none;
+    height: 100%;
+}
+
+.modal-success-wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    height: 100%;
+    padding-bottom: 20px;
+}
+
+.modal-success-wrapper p {
+    text-align: center;
+    margin: auto;
+}
+
 .modal-body {
+    display: block;
     padding: 15px 8%;
     margin: 15px auto;
 }
@@ -352,7 +372,8 @@ input[data-error]::after {
 }
 
 .btn-submit,
-.btn-signup {
+.btn-signup,
+.btn-close {
     background: #fe142f;
     display: block;
     margin: 0 auto;

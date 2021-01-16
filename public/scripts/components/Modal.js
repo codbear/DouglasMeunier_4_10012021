@@ -3,11 +3,17 @@ class Modal {
   constructor(modalElement) {
     this.modal = modalElement;
     this.closeButton = this.modal.querySelector('.close');
-    this.content = this.modal.querySelector('.content');
+    this.body = this.modal.querySelector('.modal-body');
+    this.successMessage = this.modal.querySelector('.modal-success');
+    this.closeSuccessMessage = this.successMessage.querySelector('.btn-close');
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
 
+    this.body.style.display = 'block';
+    this.successMessage.style.display = 'none';
+
     this.closeButton.addEventListener('click', this.close);
+    this.closeSuccessMessage.addEventListener('click', this.close);
   }
 
   open() {
@@ -19,6 +25,7 @@ class Modal {
   }
 
   success() {
-    this.content.innerHTML = '<p>Merci ! <br/> Votre réservation a été reçue</p>';
+    this.body.style.display = 'none';
+    this.successMessage.style.display = 'block';
   }
 }
