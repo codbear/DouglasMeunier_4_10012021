@@ -20,7 +20,7 @@
         <a href="#"><span>À propos</span></a>
         <a href="#"><span>Contact</span></a>
         <a href="#"><span>Évènements passés</span></a>
-        <a href="javascript:void(0);" class="icon" onclick="editNav()">
+        <a href="javascript:void(0);" id="toggleNav" class="icon">
             <i class="fa fa-bars"></i>
         </a>
     </div>
@@ -57,40 +57,54 @@
                       id="signUpForm"
                       novalidate
                 >
-                    <div class="formData">
+                    <div class="formData"
+                         data-error="Veuillez entrer 2 caractères minimum"
+                         data-error-visible="false">
                         <label for="first">Prénom</label><br>
                         <input class="text-control"
                                type="text"
                                id="first"
                                name="first"
                                minlength="2"
+                               required
                         /><br>
                     </div>
-                    <div class="formData">
+                    <div class="formData"
+                         data-error="Veuillez entrer 2 caractères minimum"
+                         data-error-visible="false">
                         <label for="last">Nom</label><br>
                         <input class="text-control"
                                type="text"
                                id="last"
                                name="last"
+                               required
                         /><br>
                     </div>
-                    <div class="formData">
+                    <div class="formData"
+                         data-error="Veuillez entrer une adresse e-mail valide"
+                         data-error-visible="false">
                         <label for="email">E-mail</label><br>
                         <input class="text-control"
                                type="email"
                                id="email"
                                name="email"
+                               required
                         /><br>
                     </div>
-                    <div class="formData">
+                    <div class="formData"
+                         data-error="Veuillez entrer une date de naissance valide"
+                         data-error-visible="false">
                         <label for="birthdate">Date de naissance</label><br>
                         <input class="text-control"
                                type="date"
                                id="birthdate"
                                name="birthdate"
+                               required
                         /><br>
                     </div>
-                    <div class="formData">
+                    <div class="formData"
+                         data-error="Veuillez entrer un nombre entre 0 et 99"
+                         data-error-visible="false">
                         <label for="quantity">
                             À combien de tournois GameOn avez-vous déjà participé ?
                         </label><br>
@@ -100,10 +114,13 @@
                                name="quantity"
                                min="0"
                                max="99"
+                               required
                         />
                     </div>
                     <p class="text-label">Quelles villes ?</p>
-                    <div class="formData">
+                    <div class="formData"
+                         data-error="Veuillez choisir une option"
+                         data-error-visible="false">
                         <input class="checkbox-input"
                                type="radio"
                                id="location1"
@@ -165,7 +182,9 @@
                             Portland
                         </label>
                     </div>
-                    <div class="formData">
+                    <div class="formData"
+                         data-error="Veuillez accepter les conditions d'utilisation"
+                         data-error-visible="false">
                         <input class="checkbox-input" type="checkbox" id="checkbox1" required/>
                         <label class="checkbox2-label" for="checkbox1">
                             <span class="checkbox-icon"></span>
@@ -191,6 +210,9 @@
     </p>
 </footer>
 <script src="scripts/validators.js"></script>
+<script src="scripts/components/Field.js"></script>
+<script src="scripts/components/Form.js"></script>
+<script src="scripts/nav.js"></script>
 <script src="scripts/modal.js"></script>
 </body>
 </html>
