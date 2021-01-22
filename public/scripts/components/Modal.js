@@ -1,5 +1,11 @@
 class Modal {
 
+  /**
+   * Instantiate a modal box
+   *
+   * @constructor
+   * @param {HTMLElement} modalElement - The HTML element containing the modal box
+   */
   constructor(modalElement) {
     this.modal = modalElement;
     this.closeButton = this.modal.querySelector('.close');
@@ -16,14 +22,23 @@ class Modal {
     this.closeSuccessMessage.addEventListener('click', this.close);
   }
 
+  /**
+   * Open modal box
+   */
   open() {
     this.modal.style.display = 'block';
   }
 
+  /**
+   * Close modal box
+   */
   close() {
     this.modal.style.display = 'none';
   }
 
+  /**
+   * Display success message
+   */
   success() {
     this.body.style.display = 'none';
     this.successMessage.style.display = 'block';
