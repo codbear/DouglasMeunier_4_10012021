@@ -1,3 +1,6 @@
+/**
+ * Triggers burger nav opening or closing
+ */
 function toggleNav() {
   let $topNav = document.getElementById('myTopnav');
   if ($topNav.className === 'topnav') {
@@ -7,6 +10,8 @@ function toggleNav() {
   }
 }
 
+// DOM element
 const $toggleNavButton = document.getElementById('toggleNav');
 
+// Open burger nav event
 $toggleNavButton.addEventListener('click', toggleNav);
