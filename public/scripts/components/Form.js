@@ -1,24 +1,24 @@
 class Form {
 
+  /**
+   * Instantiate a form
+   *
+   * @constructor
+   * @param {Object} fields - An object containing the fields of the form
+   */
   constructor(fields) {
     this.fields = fields;
-    this.isValid = false;
-    this.isValidating = false;
-    this.setFormError = this.setFormError.bind(this);
   }
 
+  /**
+   * Triggers form validation
+   *
+   * @returns {Boolean}
+   */
   validate() {
-    this.isValidating = true;
-    this.isValid = true;
-    Object.keys(this.fields).forEach(field => this.fields[field].validateField(this.setFormError));
-    this.isValidating = false;
+    let isValid = true;
+    Object.keys(this.fields).forEach(field => isValid = this.fields[field].validateField() && isValid);
 
-    return this.isValid && !this.isValidating;
-  }
-
-  setFormError(isValid) {
-    if (!isValid) {
-      this.isValid = false;
-    }
+    return isValid;
   }
 }
