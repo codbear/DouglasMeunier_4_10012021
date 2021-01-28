@@ -40,7 +40,7 @@ function isBirthdate(field) {
  * @returns {boolean}
  */
 function isQuantityValid(field) {
-  return field.value >= '0' && field.value <= '99';
+  return field.value >= 0 && field.value <= 99;
 }
 
 /**
